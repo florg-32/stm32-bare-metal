@@ -6,12 +6,12 @@ OBJDUMP=arm-none-eabi-objdump
 STFLASH=../stlink/bin/st-flash
 
 CC_FLAGS=-mthumb -mcpu=cortex-m3 -Iinc -Ilib -DSTM32F103xB -fstack-usage -O0 -g3
-LD_FLAGS=-mcpu=cortex-m3 -nostdlib -TSTM32F103XB_FLASH.ld -DSTM32F103xB -Wl,--print-memory-usage,\
- 		 -Map=obj/$(TARGET).map,--gc-sections
+LD_FLAGS=-mcpu=cortex-m3 -nostdlib -TSTM32F103XB_FLASH.ld -DSTM32F103xB -Wl,--print-memory-usage\
+ 		 -Wl,-Map=obj/$(TARGET).map,--gc-sections
 
 CC_FLAGS+=-Wall -Wextra -Wshadow -Wstack-usage=255 -Wconversion
 CC_FLAGS+=-fno-exceptions -fno-common -fno-non-call-exceptions -fno-rtti -ffreestanding -ffunction-sections\
-		  -fdata-sections -finline-small-functions -findirect-inlining
+		  -fdata-sections -finline-small-functions -findirect-inlining -std=c++17
 
 
 STARTUP=lib/startup_stm32f103xb.s
